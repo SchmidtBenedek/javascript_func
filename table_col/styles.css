@@ -2,3 +2,29 @@ table, thead, tbody, tr,td, th{
     border: 1px solid black;
     border-collapse: collapse;
 }
+
+thead{
+    background-color: gray;
+}
+
+thead ~ tbody tr{
+    background-color: chartreuse;   /*Felülírja */
+}
+
+tbody > tr{
+    background-color: aqua;     /*Ezt írja felül*/
+}
+
+tbody tr:nth-child(2n){
+    background-color: blue;
+}
+
+tbody tr:hover{
+    background-color: blueviolet;
+}
+
+
+
+
+
+/*Dolgozatra: border, border-collapse background-color, color, font-style, font-weight text-align, padding, margin*/
