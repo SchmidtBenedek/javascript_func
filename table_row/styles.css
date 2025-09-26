@@ -7,3 +7,39 @@ tbody tr td:last-child, td:nth-last-child(3){
     background-color: blue;
 
 }
+
+#gyakorlas{
+    background-color: blueviolet;
+}
+
+button:has(+p){
+    background-color: aqua;
+}
+
+button:not(:has(+p)){
+    background-color:darkcyan;
+}
+
+#gyakorlas:has(+a:hover) button{
+    color: cyan;
+}
+
+tr:not(:has(td[rowspan])) + tr:not(:has(td[rowspan])):hover td{
+    background-color: crimson;
+}
+
+tr:has(td[rowspan]):hover td{
+    background-color: crimson;
+}
+
+tr:has(td[rowspan]):hover + tr td{
+    background-color: crimson;
+}
+
+tr:has(td[rowspan]):has(+tr:hover) td{
+    background-color: crimson;
+}
+
+tr:has(td[rowspan]) +tr:hover td{
+    background-color: crimson;
+}
