@@ -1,0 +1,25 @@
+thead th{
+    background-color: blueviolet;
+    border: solid 2px blue;
+}
+
+table, tbody, tr, td{
+    background-color: aqua;
+    border-collapse: collapse;
+    border: solid 2px blue;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+tr td:hover{
+    background-color:blue;
+    font-weight: bolder;
+    color: aliceblue;
+}
+
+td:last-child, td:nth-last-child(3){
+    background-color:deepskyblue;
+}
+
+tr:has(td:hover) td:first-child, tr:has(td:hover) td:last-child{
+    background-color: grey;
+}
