@@ -61,16 +61,20 @@ for(const x of arr){
 
     const td1 = document.createElement("td")
     tr.appendChild(td1)
+    td1.innerText = x.theme
     const td2 = document.createElement("td")
     tr.appendChild(td2)
+    td2.innerText = x.time
     const td3 = document.createElement("td")
     tr.appendChild(td3)
+    td3.innerText = x.scientist1
 
     if (x.scientist2 === undefined){
         td3.colSpan = 2
     }
     else{
         const td4 = document.createElement("td")
+        td4.innerText = x.scientist2
         tr.appendChild(td4)
     }
 }
