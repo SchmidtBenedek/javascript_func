@@ -53,11 +53,25 @@ th3.colSpan = 2
 const tbody = document.createElement("tbody")
 table.appendChild(tbody)
 
+
+
 for(const x of arr){
     const tr = document.createElement("tr")
     tbody.appendChild(tr)
+
+    const td1 = document.createElement("td")
+    tr.appendChild(td1)
+    const td2 = document.createElement("td")
+    tr.appendChild(td2)
+    const td3 = document.createElement("td")
+    tr.appendChild(td3)
+
     if (x.scientist2 === undefined){
-        
+        td3.colSpan = 2
+    }
+    else{
+        const td4 = document.createElement("td")
+        tr.appendChild(td4)
     }
 }
 
