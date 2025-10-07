@@ -1,0 +1,8 @@
+input + p{
+    font-weight: bold;
+    color: red;
+}
+
+tr:has([colspan]) td{
+    background-color: yellow;
+}

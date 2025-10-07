@@ -56,5 +56,8 @@ table.appendChild(tbody)
 for(const x of arr){
     const tr = document.createElement("tr")
     tbody.appendChild(tr)
+    if (x.scientist2 === undefined){
+        
+    }
 }
 

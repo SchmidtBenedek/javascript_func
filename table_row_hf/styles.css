@@ -1,3 +1,4 @@
+/*
 thead th{
     background-color: blueviolet;
     border: solid 2px blue;
@@ -22,4 +23,18 @@ td:last-child, td:nth-last-child(3){
 
 tr:has(td:hover) td:first-child, tr:has(td:hover) td:last-child{
     background-color: grey;
+}
+*/
+
+table, tbody, tr, td{
+    border: solid 2px violet;
+    border-collapse: collapse;
+}
+
+td, th{
+    text-align: center;
+}
+
+tr:has(td[rowspan]){
+  background-color: yellow;
 }
