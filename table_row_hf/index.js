@@ -50,14 +50,13 @@ for(const x of fejlec){
 }
 
 for(const x of arr){
-    const tr = document.createElement('tr')
-    tbody.appendChild(tr)
+    const tr1 = document.createElement('tr')
+    tbody.appendChild(tr1)
     
     const td1 = document.createElement('td')
     tr.appendChild(td1)
     td1.innerText = x.war
 
-    td1.rowSpan = 2
     const td2 = document.createElement('td')
     tr.appendChild(td2)
     td2.innerText = x.team1
