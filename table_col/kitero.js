@@ -114,3 +114,18 @@ for (const x of arr) {
     }
 }
 
+/**
+ * 
+ * @param {string} cellType - Cella típusa
+ * @param {string} cellContent - Tartalma
+ * @param {HTMLTableRowElement} parentRow
+ * @returns {HTMLTableCellElement}
+ */
+
+function createCell(cellType, cellContent, parentRow){
+    const cell = document.createElement(cellType) //Cella létrehozása
+    parentRow.appendChild(cell) //Hozzáadjuk
+    cell.innerText = cellContent //Contentet beállítjuk 
+
+    return cell
+}
