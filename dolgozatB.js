@@ -69,7 +69,7 @@ for(let i = 0; i < fejlec.length; i++){
 }
 */
 
-for(let i = 0; i < arr.length; i++){
+/*for(let i = 0; i < arr.length; i++){
     const trBody = document.createElement('tr')
     tbody.appendChild(trBody)
 
@@ -94,4 +94,32 @@ for(let i = 0; i < arr.length; i++){
         tdCharacter1.colSpan = 2
     }
     
+}
+*/
+
+for(let i in arr){
+    const trBody = document.createElement('tr')
+    tbody.appendChild(trBody)
+
+    const tdWriter = document.createElement('td')
+    trBody.appendChild(tdWriter)
+    tdWriter.innerText = arr[i].writer
+
+        const tdWork = document.createElement('td')
+    trBody.appendChild(tdWork)
+    tdWork.innerText = arr[i].work
+
+     const tdCharacter1 = document.createElement('td')
+    trBody.appendChild(tdCharacter1)
+    tdCharacter1.innerText = arr[i].character1
+
+    if(arr[i].character2){
+        const tdCharacter2 = document.createElement('td')
+        trBody.appendChild(tdCharacter2)
+        tdCharacter2.innerText = arr[i].character2
+    }
+    else{
+        tdCharacter1.colSpan = 2
+    }
+
 }
