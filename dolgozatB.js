@@ -30,16 +30,59 @@ table.appendChild(thead)
 table.appendChild(tbody)
 thead.appendChild(trHead)
 
-/**
- * @type {string[]}
- */
-const fejlec = ['Szerző', 'Mű', 'Szereplők']
 
-for(let i = 0; i < fejlec.length; i++){
+
+
+/**
+ * @type {{title1: string, title2: string, title3?: string}[]}
+ */
+
+
+const fejlec = [
+    {
+        title1: 'Szerző',
+        title2: 'Mű',
+        title3: 'Szereplők'
+    }
+]
+/*
+const fejlec = [
+    {
+        title: 'Szerző',
+    },
+    {
+        title: 'Mű',
+    },
+    {
+        title: 'Szereplők'
+    }
+]
+*/
+
+for(const x of fejlec){
+    th1 = document.createElement('th')
+    trHead.appendChild(th1)
+    th1.innerText = x.title1
+
+    th2 = document.createElement('th')
+    trHead.appendChild(th2)
+    th2.innerText = x.title2
+
+    th3 = document.createElement('th')
+    trHead.appendChild(th3)
+    th3.innerText = x.title3
+    th3.colSpan = 2
+}
+
+
+
+/*for(let i = 0; i < fejlec.length; i++){
     const th = document.createElement('th')
     trHead.append(th)
     th.innerText = fejlec[i]
+
 }
+*/
 
 /*for(const x of arr){
     const trBody = document.createElement('tr')
@@ -97,7 +140,7 @@ for(let i = 0; i < fejlec.length; i++){
 }
 */
 
-for(let i in arr){
+for(const i in arr){
     const trBody = document.createElement('tr')
     tbody.appendChild(trBody)
 
