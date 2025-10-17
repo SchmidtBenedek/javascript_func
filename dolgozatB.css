@@ -1,0 +1,16 @@
+table, tbody, tr, td{
+    border: 1px dotted;
+    border-collapse: collapse;
+}
+
+tr:nth-child(2n){
+    background-color: blue;
+}
+
+#dolgozat div > p{
+    background-color: red;
+}
+
+#dolgozat:has(a[href="cica.html"]:hover) div{
+    background-color: red;
+}
