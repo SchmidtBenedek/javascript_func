@@ -50,8 +50,8 @@ for(const x of fejlec){
 }
 
 for(const x of arr){
-    const tr1 = document.createElement('tr')
-    tbody.appendChild(tr1)
+    const tr = document.createElement('tr')
+    tbody.appendChild(tr)
     
     const td1 = document.createElement('td')
     tr.appendChild(td1)

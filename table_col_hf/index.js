@@ -44,11 +44,22 @@ tr.appendChild(th1)
 tr.appendChild(th2)
 tr.appendChild(th3)
 
-th1.innerText = "Fizika területe"
-th2.innerText = "Időszak"
-th3.innerText = "Képviselők"
+const fejlec = ["Fizika területe", "Időszak", "Képviselők"]
 
-th3.colSpan = 2
+for(let i = 0; i < fejlec.length; i++){
+    const th = document.createElement("th")
+    thead.appendChild(th)
+    th.innerText = fejlec[i]
+    
+    if(i%2 == 0 && i != 0){
+        th.colSpan = '2'
+    }
+    
+}
+
+
+
+
 
 const tbody = document.createElement("tbody")
 table.appendChild(tbody)

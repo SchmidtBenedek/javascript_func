@@ -44,15 +44,19 @@ const arr =[
     }
 ]
 
-
+/**
+ * @type {string[]}
+ */
 const fejlec = ['Nemzetiség', 'Szerző', 'Mű']
 
+const tr = document.createElement('tr')
 const table = document.createElement('table')
 const thead = document.createElement('thead')
 const tbody = document.createElement('tbody')
 
 document.body.appendChild(table)
 table.appendChild(thead)
+thead.appendChild(tr)
 table.appendChild(tbody)
 
 for(const x of  fejlec){
@@ -80,7 +84,7 @@ for(const i of arr){
     td3.innerText  = i.work1
 
     if(i.writer2 != undefined && i.work2 != undefined){
-        td1.rowSpan = 2
+        td1.rowSpan = '2'
         const tr2 = document.createElement('tr')
         tbody.appendChild(tr2)
         
