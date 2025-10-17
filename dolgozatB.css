@@ -7,7 +7,7 @@ tr:nth-child(2n){
     background-color: blue;
 }
 
-#dolgozat div > p{
+#dolgozat div > p.error{
     background-color: red;
 }
 
