@@ -65,24 +65,16 @@ const arr = [
 
 const table = document.createElement("table")
 document.body.appendChild(table)
-
 const thead = document.createElement("thead")
 table.appendChild(thead)
-
 const tr = document.createElement("tr")
 thead.appendChild(tr)
 
-const th1 = document.createElement("th")
-th1.innerText = "Szerző neve"
-const th2 = document.createElement("th")
-th2.innerText = "Korszak"
-const th3 = document.createElement("th")
-th3.innerText = "Szerelmek"
-th3.colSpan = 2
 
-tr.appendChild(th1)
-tr.appendChild(th2)
-tr.appendChild(th3)
+createCell('th', "Szerző neve", tr)
+createCell('th', "Korszak", tr)
+const th3 = createCell('th', "Szerelmek", tr)
+th3.colSpan = 2
 
 const tbody = document.createElement("tbody")
 table.appendChild(tbody)
@@ -91,35 +83,26 @@ for (const x of arr) {
     const tr = document.createElement("tr")
     tbody.appendChild(tr)
 
-    const td1 = document.createElement("td")
-    td1.innerText = x.poet
-    tr.appendChild(td1)
+    createCell('td', x.poet, tr)
+    createCell('td', x.time, tr)
+    const td3 = createCell('td', x.love1, tr)
 
-    const td2 = document.createElement("td")
-    td2.innerText = x.time
-    tr.appendChild(td2)
-
-    const td3 = document.createElement("td")
-    td3.innerText = x.love1
-    tr.appendChild(td3)
 
     if (x.love2 === undefined) {
         td3.colSpan = 2
     } 
     else {
-
-        const td4 = document.createElement("td")
-        td4.innerText = x.love2
-        tr.appendChild(td4)
+        createCell('td', x.love2, tr)
     }
 }
+
 
 /**
  * 
  * @param {string} cellType - Cella típusa
  * @param {string} cellContent - Tartalma
  * @param {HTMLTableRowElement} parentRow
- * @returns {HTMLTableCellElement}
+ * @returns {HTMLTableCellElement} - Visszatérünk egy létrehozott cellaelmenttel, hogy tudjuk változtatni a tulajdonságait
  */
 
 function createCell(cellType, cellContent, parentRow){
@@ -129,3 +112,4 @@ function createCell(cellType, cellContent, parentRow){
 
     return cell
 }
+
