@@ -113,3 +113,106 @@ function createCell(cellType, cellContent, parentRow){
     return cell
 }
 
+
+//----
+//Hf:
+
+/**
+ * @returns {void}
+ */
+function brOwn(){
+    const br = document.createElement("br")
+    form.appendChild(br)
+}
+
+/**
+ * @param {string} labelText - A label tartlama
+ * @param {string} inputIdName 
+ * @returns {HTMLElement}
+ */
+
+function createLabelAndInput(labelText, inputIdName){
+    const label = document.createElement("label");
+    label.innerText = labelText;
+    label.htmlFor = inputIdName;
+    form.appendChild(label);
+
+    brOwn()
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.id = inputIdName;
+    input.name = inputIdName;
+    form.appendChild(input);
+
+    brOwn()
+    brOwn()
+
+    return input
+}
+
+const form = document.createElement("form");
+form.id = "form_js";
+document.body.appendChild(form)
+brOwn()
+
+const h2 = document.createElement("h2");
+h2.innerText = "Javascript űrlap"
+form.appendChild(h2)
+
+const input1 = createLabelAndInput("Költő neve:", "kolto_nev");
+const input2 = createLabelAndInput("Korszak:", "korszak");
+const input3 = createLabelAndInput("Szerelme:", "szerelem1");
+
+
+/*
+
+
+const label1 = document.createElement("label")
+label1.innerText = "Költő neve: "
+label1.htmlFor = "kolto_nev"
+form.appendChild(label1)
+brOwn()
+
+const input1 = document.createElement("input")
+input1.type = "text"
+input1.id = "kolto_nev"
+input1.name = "kolto_nev"
+form.appendChild(input1)
+brOwn()
+brOwn()
+
+
+const label2 = document.createElement("label");
+label2.innerText = "Korszak:";
+label2.htmlFor = "korszak";
+form.appendChild(label2)
+brOwn()
+
+const input2 = document.createElement("input");
+input2.type = "text";
+input2.id = "korszak";
+input2.name = "korszak";
+form.appendChild(input2);
+brOwn()
+brOwn()
+
+
+const label3 = document.createElement("label");
+label3.innerText = "Szerelme:";
+label3.htmlFor = "szerelem1";
+form.appendChild(label3);
+brOwn()
+
+const input3 = document.createElement("input");
+input3.type = "text";
+input3.id = "szerelem1";
+input3.name = "szerelem1";
+form.appendChild(input3);
+brOwn()
+brOwn()
+
+const button = document.createElement("button")
+button.innerText = "Hozzáadás"
+form.appendChild(button)
+*/

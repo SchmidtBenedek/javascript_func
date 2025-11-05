@@ -43,15 +43,15 @@ thead.appendChild(trHead)
 const fejlec = [
     {
         title: 'Szerző',
-        col: false
+        colSpanIsTrue: false
     },
     {
         title: 'Mű',
-        col: false
+        colSpanIsTrue: false
     },
     {
         title: 'Szereplők',
-        col: true
+        colSpanIsTrue: true
     }
 ]
 
