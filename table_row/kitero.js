@@ -1,4 +1,4 @@
-const obj = {}
+    const obj = {}
 const szam = 10
 
 if (szam > 5){
@@ -73,6 +73,15 @@ for(const i of arr){
     const td1 = document.createElement('td')
     tr1.appendChild(td1)
     td1.innerText = i.nation
+    td1.addEventListener('click', 
+        function (e){
+            /**
+             * @type {HTMLTableCellElement} 
+             */
+            const target = e.target 
+            target.classList.add('marked')
+        }
+    )
 
 
     const td2 = document.createElement('td')
@@ -101,5 +110,39 @@ for(const i of arr){
     }
       
 }
- 
+/**
+ * @type {HTMLFormElement}
+ */
+
+const htmlForm = document.getElementById('htmlform')
+
+htmlForm.addEventListener('submit', 
+    function (e){
+        e.preventDefault() //- nem küldi el a get kerest a szerver fele
+        /**
+         * @type {HTMLFormElement}
+         */
+        const target = e.target
+        
+        /**
+         * @type {HTMLInputElement}
+         */
+        const nemzetiseg = target.querySelector('#nemzetiseg')
+        const szerzo1 = target.querySelector('#szerzo1')
+        const mu1 = target.querySelector('#mu1')
+        const szerzo2 = target.querySelector('#szerzo2')
+        const mu2 = target.querySelector('#mu2')
+
+
+        /**
+         * @type {string}
+         */
+        const nemzetisegValue = nemzetiseg.value
+        const szerzo1Value = szerzo1.value
+        const mu1Value = mu1.value
+        const szerzo2Value = szerzo2.value
+        const mu2Value = mu2.value
+
+    }
+)
 
