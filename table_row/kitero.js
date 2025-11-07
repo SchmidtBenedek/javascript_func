@@ -143,6 +143,61 @@ htmlForm.addEventListener('submit',
         const szerzo2Value = szerzo2.value
         const mu2Value = mu2.value
 
+        /** 
+         * @type {{nation: string, writer1: string, work1: string, writer2: string?, work2?: string}}
+        */
+        const obj = {}
+
+        obj.nation = nemzetisegValue
+        obj.writer1 = szerzo1Value
+        obj.work1 = mu1Value
+        obj.writer2 = szerzo2Value
+        obj.work2 = mu2Value
+
+        const valami = document.getElementById('valami')
+
+        const tr1 = document.createElement('tr')
+        valami.appendChild(tr1)
+    
+    
+        const td1 = document.createElement('td')
+        tr1.appendChild(td1)
+        td1.innerText = obj.nation
+        td1.addEventListener('click', 
+            function (e){
+                /**
+                 * @type {HTMLTableCellElement} 
+                 */
+                const target = e.target 
+                target.classList.add('marked')
+            }
+        )
+
+
+        const td2 = document.createElement('td')
+        tr1.appendChild(td2)
+        td2.innerText = obj.writer1
+        
+        const td3 = document.createElement('td')
+        tr1.appendChild(td3)
+        td3.innerText  = obj.work1
+
+        if(obj.writer2 != "" && obj.work2 != ""){
+            td1.rowSpan = '2'
+            const tr2 = document.createElement('tr')
+            valami.appendChild(tr2)
+            
+            const td4 = document.createElement('td')
+            tr2.appendChild(td4)
+            td4.innerText  = obj.writer2
+
+            const td5 = document.createElement('td')
+            tr2.appendChild(td5)
+            td5.innerText = obj.work2
+
+
+            
+        }    
     }
 )
 
