@@ -177,11 +177,6 @@ htmlForm.addEventListener('submit',
                     kijelol.classList.remove('marked')
                 }
                 target.classList.add('marked')
-
-                console.log(target)
-                console.log(tr)
-                console.log(tbody)
-                console.log(kijelol)
                 
             }
         )
