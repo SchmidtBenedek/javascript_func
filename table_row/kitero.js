@@ -168,8 +168,13 @@ htmlForm.addEventListener('submit',
                 /**
                  * @type {HTMLTableCellElement} 
                  */
-                const target = e.target 
-                target.classList.add('marked')
+                const target = e.target //Td amire rakattintok
+                const tr = target.parentElement
+                const tbody = tr.parentElement
+                
+
+
+                
             }
         )
 
