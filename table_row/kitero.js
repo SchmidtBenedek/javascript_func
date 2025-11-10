@@ -168,14 +168,21 @@ htmlForm.addEventListener('submit',
                 /**
                  * @type {HTMLTableCellElement} 
                  */
-                const targettd = e.target
-                const parentRow = targettd.parentElement;
-                const parentTbody = parentRow.parentElement
-                const previousMarked = parentTbody.querySelector('.marked');
-                if(previousMarked){
-                    previousMarked.classList.remove('marked');
+                const target = e.target //Td amire rakattintok
+                const tr = target.parentElement
+                const tbody = tr.parentElement
+                const kijelol = tbody.querySelector('.marked')
+                
+                if (kijelol) {
+                    kijelol.classList.remove('marked')
                 }
-                targettd.classList.add('marked');
+                target.classList.add('marked')
+
+                console.log(target)
+                console.log(tr)
+                console.log(tbody)
+                console.log(kijelol)
+                
             }
         )
 
