@@ -171,10 +171,12 @@ htmlForm.addEventListener('submit',
                 const target = e.target //Td amire rakattintok
                 const tr = target.parentElement
                 const tbody = tr.parentElement
-                
+                const kijelol = tbody.querySelector('.marked')
+                if(kijelol){
+                    kijelol.classList.remove('marked')
+                }
 
-
-                
+                target.classList.add('marked')
             }
         )
 
