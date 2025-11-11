@@ -121,15 +121,17 @@ const dataArr = []
 
 /**
  * 
- * @param {dataArr} arr //oszinten nem tudom hogy ezt megtehetem
+ * @param {{nation: string, writer1: string, work1: string, writer2?: string, work2?: string}[]} arr
  */
 function renderTableBody(arr){
-    const valami = document.getElementById('valami')
-    valami.innerHTML = ''
+    tbody.id = 'tablebody'
+    const tableBody = document.getElementById('tablebody')
+    tableBody.innerHTML = ''
+    
 
     for(const obj of arr){
         const tr1 = document.createElement('tr')
-        valami.appendChild(tr1)
+        tableBody.appendChild(tr1)
 
         const td1 = document.createElement('td')
         tr1.appendChild(td1)
@@ -164,7 +166,7 @@ function renderTableBody(arr){
         if(obj.writer2 != "" && obj.work2 != ""){
             td1.rowSpan = '2'
             const tr2 = document.createElement('tr')
-            valami.appendChild(tr2)
+            tableBody.appendChild(tr2)
             
             const td4 = document.createElement('td')
             tr2.appendChild(td4)
