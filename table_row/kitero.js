@@ -228,7 +228,6 @@ htmlForm.addEventListener('submit',
         obj.work2 = mu2Value
 
         dataArr.push(obj)
-        renderTableBody(dataArr)
     }
 )
 renderTableBody(dataArr)
