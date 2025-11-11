@@ -110,56 +110,27 @@ for(const i of arr){
     }
       
 }
+//-------------------------------------------------------------------------------
+
+//HF--------------------
+
 /**
- * @type {HTMLFormElement}
+ * @type {{nation: string, writer1: string, work1: string, writer2?: string, work2?: string}[]}
  */
+const dataArr = []
 
-const htmlForm = document.getElementById('htmlform')
+/**
+ * 
+ * @param {dataArr} arr //oszinten nem tudom hogy ezt megtehetem
+ */
+function renderTableBody(arr){
+    const valami = document.getElementById('valami')
+    valami.innerHTML = ''
 
-htmlForm.addEventListener('submit', 
-    function (e){
-        e.preventDefault() //- nem küldi el a get kerest a szerver fele
-        /**
-         * @type {HTMLFormElement}
-         */
-        const target = e.target
-        
-        /**
-         * @type {HTMLInputElement}
-         */
-        const nemzetiseg = target.querySelector('#nemzetiseg')
-        const szerzo1 = target.querySelector('#szerzo1')
-        const mu1 = target.querySelector('#mu1')
-        const szerzo2 = target.querySelector('#szerzo2')
-        const mu2 = target.querySelector('#mu2')
-
-
-        /**
-         * @type {string}
-         */
-        const nemzetisegValue = nemzetiseg.value
-        const szerzo1Value = szerzo1.value
-        const mu1Value = mu1.value
-        const szerzo2Value = szerzo2.value
-        const mu2Value = mu2.value
-
-        /** 
-         * @type {{nation: string, writer1: string, work1: string, writer2: string?, work2?: string}}
-        */
-        const obj = {}
-
-        obj.nation = nemzetisegValue
-        obj.writer1 = szerzo1Value
-        obj.work1 = mu1Value
-        obj.writer2 = szerzo2Value
-        obj.work2 = mu2Value
-
-        const valami = document.getElementById('valami')
-
+    for(const obj of arr){
         const tr1 = document.createElement('tr')
         valami.appendChild(tr1)
-    
-    
+
         const td1 = document.createElement('td')
         tr1.appendChild(td1)
         td1.innerText = obj.nation
@@ -207,5 +178,63 @@ htmlForm.addEventListener('submit',
             
         }    
     }
+}
+
+
+
+
+/**
+ * @type {HTMLFormElement}
+ */
+
+const htmlForm = document.getElementById('htmlform')
+
+htmlForm.addEventListener('submit', 
+    function (e){
+        e.preventDefault() //- nem küldi el a get kerest a szerver fele
+        /**
+         * @type {HTMLFormElement}
+         */
+        const target = e.target
+        
+        /**
+         * @type {HTMLInputElement}
+         */
+        const nemzetiseg = target.querySelector('#nemzetiseg')
+        const szerzo1 = target.querySelector('#szerzo1')
+        const mu1 = target.querySelector('#mu1')
+        const szerzo2 = target.querySelector('#szerzo2')
+        const mu2 = target.querySelector('#mu2')
+
+
+        /**
+         * @type {string}
+         */
+        const nemzetisegValue = nemzetiseg.value
+        const szerzo1Value = szerzo1.value
+        const mu1Value = mu1.value
+        const szerzo2Value = szerzo2.value
+        const mu2Value = mu2.value
+
+        /** 
+         * @type {{nation: string, writer1: string, work1: string, writer2: string?, work2?: string}}
+        */
+        const obj = {}
+
+        obj.nation = nemzetisegValue
+        obj.writer1 = szerzo1Value
+        obj.work1 = mu1Value
+        obj.writer2 = szerzo2Value
+        obj.work2 = mu2Value
+
+        dataArr.push(obj)
+        renderTableBody(dataArr)
+    }
 )
+renderTableBody(dataArr)
+
+
+
+
+
 
