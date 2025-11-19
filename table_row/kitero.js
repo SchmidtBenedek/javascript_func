@@ -161,7 +161,7 @@ function renderTableRow(tablebody, writerRow) {
     const tr = document.createElement('tr')
     tablebody.appendChild(tr)
 
-    const tdN = createTableCell("td", writerRow.nemzet, tr);
+    const tdN = createTableCell("td", writerRow.nation, tr);
 
     tdN.addEventListener('click', function(e) {
         const target = e.target
@@ -174,15 +174,15 @@ function renderTableRow(tablebody, writerRow) {
         target.classList.add('marked');
     });
 
-    createTableCell("td", writerRow.szerzo, tr)
-    createTableCell("td", writerRow.mu, tr)
+    createTableCell("td", writerRow.writer1, tr)
+    createTableCell("td", writerRow.work1, tr)
 
-    if(writerRow.szerzo2 && writerRow.mu2) {
+    if(writerRow.writer1 && writerRow.work2) {
         tdN.rowSpan = 2
         const tr2 = document.createElement('tr')
         tablebody.appendChild(tr2)
-        createTableCell("td", writerRow.szerzo2, tr2)
-        createTableCell("td", writerRow.mu2, tr2)
+        createTableCell("td", writerRow.writer1, tr2)
+        createTableCell("td", writerRow.work2, tr2)
     }
 }
 
@@ -256,22 +256,22 @@ function renderTableRow(tablebody, writerRow) {
     const tr = document.createElement('tr')
     tablebody.appendChild(tr)
 
-    const tdN = createTableCell("td", writerRow.nemzet, tr)
+    const tdN = createTableCell("td", writerRow.nation, tr)
 
     tdN.addEventListener('click', function(e) {
         const target = e.target
         target.classList.add('marked')
     });
 
-    createTableCell("td", writerRow.szerzo, tr)
-    createTableCell("td", writerRow.mu, tr)
+    createTableCell("td", writerRow.writer1, tr)
+    createTableCell("td", writerRow.work1, tr)
 
-    if(writerRow.szerzo2 && writerRow.mu2) {
+    if(writerRow.writer2 && writerRow.work2) {
         tdN.rowSpan = 2
         const tr2 = document.createElement('tr')
         tablebody.appendChild(tr2)
-        createTableCell("td", writerRow.szerzo2, tr2)
-        createTableCell("td", writerRow.mu2, tr2)
+        createTableCell("td", writerRow.writer2, tr2)
+        createTableCell("td", writerRow.work2, tr2)
     }
 }
 
