@@ -66,7 +66,7 @@ renderTableBody(arr)
  */
 const htmlform = document.getElementById('htmlform')
 
-htmlform.addEventListener('submit',addToHtmlTable)
+htmlform.addEventListener('submit', addToHtmlTable)
 
 
 /**

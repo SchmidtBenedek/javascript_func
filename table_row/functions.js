@@ -161,9 +161,12 @@ function addToHtmlTable(e) {
 
 function validateFields(input1, input2, input3) {
     let valid = true;
-    if(!validateField(input1, "kötelező")) valid = false
-    if(!validateField(input2, "kötelező")) valid = false
-    if(!validateField(input3, "kötelező")) valid = false
+    if(validateField(input1, "kötelező") == false) {
+        valid = false}
+    if(validateField(input2, "kötelező") == false) {
+        valid = false}
+    if(validateField(input3, "kötelező") == false) {
+        valid = false}
     return valid;
 }
 
@@ -215,6 +218,10 @@ function validateField(input, hibaUzenet) {
         const errorSpan = input.parentElement.querySelector('.error')
         errorSpan.innerText = hibaUzenet
         valid = false
+    }
+    else{
+        const  errorSpan = input.parentElement.querySelector('.error')
+        errorSpan.innerText = '';
     }
     return valid
 }
