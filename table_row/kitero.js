@@ -1,17 +1,3 @@
-const obj = {}
-const szam = 10
-
-if (szam > 5){
-    obj.name = 'Benedek'
-    console.log(obj)
-}
-else{
-    obj['name'] = 'Benedek2' //ugyanúgy értéket ada  tulajdonságnak
-}
-console.log(obj.age)
-console.log(obj)
-
-
 //Hf.:
 
 /**
@@ -44,102 +30,161 @@ const arr =[
     }
 ]
 
-/**
- * @type {string[]}
- */
-const fejlec = ['Nemzetiség', 'Szerző', 'Mű']
+const formArray=[
+    {
+        label: "Nemzetiség:",
+        input: "nemzetiseg",
+    },
+    {
+        label: "Szerző1:",
+        input: "szerzo1",
+    },
+    {
+        label: "Mű:",
+        input: "mu1",
+    },
+    {
+        label: "Szerző2:",
+        input: "szerzo2",
+    },
+    {
+        label: "Mű:",
+        input: "mu2",
+    },
+]
 
-const tr = document.createElement('tr')
-const table = document.createElement('table')
-const thead = document.createElement('thead')
-const tbody = document.createElement('tbody')
-
-document.body.appendChild(table)
-table.appendChild(tbody)
-
-generateHeader(table, fejlec)
+generateTable('created' ,["Nemzetiseg","Szerzo","Mű"])
+renderTableBody(arr)
     
-for(const i of arr){
-    const tr1 = document.createElement('tr')
-    tbody.appendChild(tr1)
-    
-    
-    const td1 = document.createElement('td')
-    tr1.appendChild(td1)
-    td1.innerText = i.nation
-    td1.addEventListener('click', 
-        function (e){
-            /**
-             * @type {HTMLTableCellElement} 
-             */
-            const target = e.target 
-            target.classList.add('marked')
-        }
-    )
-
-
-    const td2 = document.createElement('td')
-    tr1.appendChild(td2)
-    td2.innerText = i.writer1
-    
-    const td3 = document.createElement('td')
-    tr1.appendChild(td3)
-    td3.innerText  = i.work1
-
-    if(i.writer2 != undefined && i.work2 != undefined){
-        td1.rowSpan = '2'
-        const tr2 = document.createElement('tr')
-        tbody.appendChild(tr2)
-        
-        const td4 = document.createElement('td')
-        tr2.appendChild(td4)
-        td4.innerText  = i.writer2
-
-        const td5 = document.createElement('td')
-        tr2.appendChild(td5)
-        td5.innerText = i.work2
-
-
-        
-    }
-      
-}
-//-------------------------------------------------------------------------------
-
-//HF--------------------
-
-/**
- * @type {CountryWriters[]}
- */
-const dataArr = []
-
-/**
- * 
- * @param {CountryWriters[]} arr
- */
-function renderTableBody(arr){
-    tbody.id = 'tablebody'
-    const tableBody = document.getElementById('tablebody')
-    tableBody.innerHTML = ''
-    
-
-    for(const obj of arr){
-       renderTableRow(tableBody, obj)
-        }    
-    }
-
-
-
 
 
 /**
  * @type {HTMLFormElement}
  */
+const htmlform = document.getElementById('htmlform')
 
-const htmlForm = document.getElementById('htmlform')
+/**
+ * @type {HTMLFormElement}
+ */
+const jsform = jsformRender('jsform', formArray)
 
-htmlForm.addEventListener('submit', htmlEventListener)
-renderTableBody(dataArr)
+jsform.addEventListener('submit', function(e) {
+    e.preventDefault()
+    /**
+     * @type {CountryWriters}
+     */
+    const obj = {}
+
+    /**
+     * @type {HTMLFormElement}
+     */
+    const target = e.target
+    
+    /**
+     * @type {HTMLInputElement}
+     */
+    const nemzetiseg = target.querySelector('#nemzetiseg')
+    const szerzo1 = target.querySelector('#szerzo1')
+    const mu1 = target.querySelector('#mu1')
+    const szerzo2 = target.querySelector('#szerzo2')
+    const mu2 = target.querySelector('#mu2')
+
+    if(validateFields(nemzetiseg, szerzo1, mu1)) {
+        obj.nation = nemzetiseg.value;
+        obj.writer1 = szerzo1.value;
+        obj.work1 = mu1.value;
+        obj.writer2 = szerzo2.value;
+        obj.work2 = mu2.value;
+
+        arr.push(obj);
+        renderTableBody(arr);
+    }
+})
+
+
+/** 
+* @param {HTMLElement} parent 
+*/
+function br(parent) {
+    parent.appendChild(document.createElement('br'));
+}
+
+/**
+ * @param {HTMLFormElement} form
+ * @param {string} labelszov
+ * @param {string} id
+ */
+function createFormElement(form, labelszov, id) {
+    const div = document.createElement('div')
+    form.appendChild(div)
+
+    const label = document.createElement('label')
+    label.htmlFor = id
+    label.innerText = labelszov
+    div.appendChild(label)
+    br(div)
+
+    const input = document.createElement('input')
+    input.type = "text"
+    input.id = id
+    input.name = id
+    div.appendChild(input)
+
+    br(div)
+
+    const span = document.createElement('span');
+    span.classList.add('error')
+    div.appendChild(span)
+    br(div)
+}
+
+/**
+ * @param {"td"|"th"} celltype
+ * @param {string} content
+ * @param {HTMLTableRowElement} row
+ */
+function createTableCell(celltype, content, row) {
+    const cell = document.createElement(celltype);
+    cell.innerText = content;
+    row.appendChild(cell);
+
+    return cell;
+}
+
+
+/**
+ * @param {HTMLTableSectionElement} tablebody
+ * @param {CountryWriters} writerRow
+ */
+
+function renderTableRow(tablebody, writerRow) {
+    const tr = document.createElement('tr')
+    tablebody.appendChild(tr)
+
+    const tdN = createTableCell("td", writerRow.nemzet, tr);
+
+    tdN.addEventListener('click', function(e) {
+        const target = e.target
+        target.classList.add('marked')
+        const tbody = target.closest('tbody');
+        const marked = tbody.querySelector('.marked');
+        if(marked){
+            marked.classList.remove('marked');
+        } 
+        target.classList.add('marked');
+    });
+
+    createTableCell("td", writerRow.szerzo, tr)
+    createTableCell("td", writerRow.mu, tr)
+
+    if(writerRow.szerzo2 && writerRow.mu2) {
+        tdN.rowSpan = 2
+        const tr2 = document.createElement('tr')
+        tablebody.appendChild(tr2)
+        createTableCell("td", writerRow.szerzo2, tr2)
+        createTableCell("td", writerRow.mu2, tr2)
+    }
+}
 
 /**
  * @param {HTMLTableSectionElement} tablebody
@@ -203,57 +248,150 @@ function createTableCell(celltype, cellcontent, parent){
 }
 
 /**
- * @param {HTMLTableElement} table 
- * @param {string[]} headerlist 
+ * @param {HTMLTableSectionElement} tablebody
+ * @param {CountryWriters} writerRow
  */
-function generateHeader(table, headerlist){
-    const thead = document.createElement('thead')
-    table.appendChild(thead)
+
+function renderTableRow(tablebody, writerRow) {
     const tr = document.createElement('tr')
-    thead.appendChild(tr)
+    tablebody.appendChild(tr)
 
-    for (const x of headerlist){
-        const th = createTableCell('th', x, tr)
+    const tdN = createTableCell("td", writerRow.nemzet, tr)
 
+    tdN.addEventListener('click', function(e) {
+        const target = e.target
+        target.classList.add('marked')
+    });
+
+    createTableCell("td", writerRow.szerzo, tr)
+    createTableCell("td", writerRow.mu, tr)
+
+    if(writerRow.szerzo2 && writerRow.mu2) {
+        tdN.rowSpan = 2
+        const tr2 = document.createElement('tr')
+        tablebody.appendChild(tr2)
+        createTableCell("td", writerRow.szerzo2, tr2)
+        createTableCell("td", writerRow.mu2, tr2)
     }
 }
 
 /**
- * @param {Event} e 
+ * @param {CountryWriters[]} gyujtemeny
+*/
+
+function renderTableBody(gyujtemeny) {
+    const tbody = document.getElementById('created')
+    tbody.innerHTML = ''
+    for(const x of gyujtemeny) {
+        renderTableRow(tbody, x)
+    }
+}
+
+/**
+ * @param {HTMLTableElement} table
+ * @param {string[]} headerlist
  */
-function htmlEventListener(e){
-    e.preventDefault() //- nem küldi el a get kerest a szerver fele
-    /**
-     * @type {HTMLFormElement}
-     */
-    const target = e.target
-    
-    /**
-     * @type {HTMLInputElement}
-     */
+
+function generetHeader(table, headerlist) {
+    const thead = document.createElement('thead');
+    table.appendChild(thead);
+
+    const trHead = document.createElement("tr");
+    thead.appendChild(trHead);
+
+    for(const x of headerlist) {
+        createTableCell("th", x, trHead);
+    }
+}
+
+function addToHtmlTable(e) {
+    e.preventDefault();
+    const target = e.target;
     const nemzetiseg = target.querySelector('#nemzetiseg')
     const szerzo1 = target.querySelector('#szerzo1')
     const mu1 = target.querySelector('#mu1')
     const szerzo2 = target.querySelector('#szerzo2')
     const mu2 = target.querySelector('#mu2')
-    /**
-     * @type {string}
-     */
-    const nemzetisegValue = nemzetiseg.value
-    const szerzo1Value = szerzo1.value
-    const mu1Value = mu1.value
-    const szerzo2Value = szerzo2.value
-    const mu2Value = mu2.value
-    /** 
-     * @type {CountryWriters}
-    */
-    const obj = {}
-    obj.nation = nemzetisegValue
-    obj.writer1 = szerzo1Value
-    obj.work1 = mu1Value
-    obj.writer2 = szerzo2Value
-    obj.work2 = mu2Value
 
-    dataArr.push(obj)
-    renderTableBody(dataArr)
+    if(validateFields(nemzetiseg, szerzo1, mu1)){
+        const obj = {
+            nemzet: nemzetiseg.value,
+            szerzo: szerzo1.value,
+            mu: mu1.value,
+            szerzo2: szerzo2.value,
+            mu2: mu2.value
+        };
+
+        const tbody = document.getElementById('alap');
+        renderTableRow(tbody, obj);
+    }
 }
+
+/**
+ * @param {HTMLInputElement} input1
+ * @param {HTMLInputElement} input2
+ * @param {HTMLInputElement} input3
+ * @returns {boolean}
+ */
+
+function validateFields(input1, input2, input3) {
+    let valid = true;
+    if(!validateField(input1, "kötelező")) valid = false
+    if(!validateField(input2, "kötelező")) valid = false
+    if(!validateField(input3, "kötelező")) valid = false
+    return valid;
+}
+
+/**
+ * @param {string} id
+ * @returns {HTMLFormElement}
+ */
+
+function jsformRender(id, mezok) {
+    const jsform = document.createElement('form')
+    jsform.id = id
+    document.body.appendChild(jsform)
+
+    for(const x of mezok) {
+        createFormElement(jsform, x.label, x.input)
+    }
+
+    const button = document.createElement('button')
+    button.innerText = 'Hozzáadás'
+    jsform.appendChild(button)
+
+    return jsform;
+}
+
+/**
+ * @param {string} tbodyId
+ * @param {string[]} fejleclist
+ */
+
+function generateTable(tbodyId, fejleclist) {
+    const table = document.createElement('table')
+    document.body.appendChild(table)
+
+    generetHeader(table, fejleclist)
+
+    const tbody = document.createElement('tbody')
+    tbody.id = tbodyId
+    table.appendChild(tbody)
+}
+
+/**
+ * @param {HTMLInputElement} input
+ * @param {string} hibaUzenet
+ * @returns {boolean}
+ */
+function validateField(input, hibaUzenet) {
+    let valid = true
+    if(input.value === '') {
+        const errorSpan = input.parentElement.querySelector('.error')
+        errorSpan.innerText = hibaUzenet
+        valid = false
+    }
+    return valid
+}
+
+
