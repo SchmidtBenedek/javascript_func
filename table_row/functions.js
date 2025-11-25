@@ -220,7 +220,7 @@ function validateField(input, hibaUzenet) {
         valid = false
     }
     else{
-        const  errorSpan = input.parentElement.querySelector('.error')
+        const errorSpan = input.parentElement.querySelector('.error')
         errorSpan.innerText = '';
     }
     return valid
