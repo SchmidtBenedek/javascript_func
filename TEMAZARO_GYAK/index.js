@@ -63,8 +63,17 @@ for(const x of arr){
     td3.innerText = x.pelda1
 
     if(x.agazat2 != undefined && x.pelda2 != undefined){
+        td1.rowSpan = "2"
         const tr2 = document.createElement('tr')
-        tBody.appendChild()
+        tBody.appendChild(tr2)
+
+        const td4 = document.createElement('td')
+        tr2.appendChild(td4)
+        td4.innerText = x.agazat2
+
+        const td5 = document.createElement('td')
+        tr2.appendChild(td5)
+        td5.innerText = x.pelda2
     }
     
 
