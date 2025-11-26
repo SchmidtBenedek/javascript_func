@@ -62,6 +62,10 @@ for(const x of arr){
     tr1.appendChild(td3)
     td3.innerText = x.pelda1
 
+    if(x.agazat2 != undefined && x.pelda2 != undefined){
+        const tr2 = document.createElement('tr')
+        tBody.appendChild()
+    }
     
 
 }
