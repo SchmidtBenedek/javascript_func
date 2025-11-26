@@ -1,34 +1,26 @@
 /**
- * @type {[{telepules: string, agazat: string, pelda1: string, pelda2?: string}]}
+ * @type {{telepules: string, agazat1: string, pelda1: string, agazat2?: string pelda2?: string}[]}
  */
 
 const arr = [
     {
         telepules: 'Athén',
-        agazat: 'politika',
-        pelda1: 'demokrácia'
-    },
-    {
-        telepules: 'Athén',
-        agazat: 'tudomany',
-        pelda1: 'filozofia'
+        agazat1: 'politika',
+        pelda1: 'demokrácia',
+        agazat2: 'tudomany',
+        pelda2: 'filozófia'
     },
     {
         telepules: 'Egyiptom',
-        agazat: 'mezőgazdaság',
+        agazat1: 'mezőgazdaság',
         pelda1: 'csatornák',
-        pelda2: 'gátak'
     },
     {
         telepules: 'Spárta',
-        agazat: 'neveléstudomány',
-        pelda1: 'agogé'
-    },
-    {
-        telepules: 'Spárta',
-        agazat: 'harcművészet',
-        pelda1: 'hoplita',
-        pelda2: 'phalanx'
+        agazat1: 'neveléstudomány',
+        pelda1: 'agogé',
+        agazat2: 'harcászat',
+        pelda2: 'hoplita'
     }
 ]
 
@@ -64,22 +56,13 @@ for(const x of arr){
 
     const td2 = document.createElement('td')
     tr1.appendChild(td2)
-    td2.innerText = x.agazat
+    td2.innerText = x.agazat1
 
     const td3 = document.createElement('td')
     tr1.appendChild(td3)
     td3.innerText = x.pelda1
 
-    if(x.pelda2){
-        const tr2 = document.createElement('tr')
-        tBody.appendChild(tr2)
-
-        const td4 = document.createElement('td')
-        tr2.appendChild(td4)   
-
-        td4.innerText = x.pelda2
-
-    }
+    
 
 }
 
