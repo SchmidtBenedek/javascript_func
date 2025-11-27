@@ -33,7 +33,7 @@ const tHead = document.createElement('thead')
 const trHead = document.createElement('tr')
 const tBody = document.createElement('tbody')
 
-document.body.appendChild(table)
+//document.body.appendChild(table)
 table.appendChild(tHead)
 tHead.appendChild(trHead)
 table.appendChild(tBody)
@@ -74,8 +74,38 @@ for(const x of arr){
         const td5 = document.createElement('td')
         tr2.appendChild(td5)
         td5.innerText = x.pelda2
+    }  
+}
+
+const jsDiv = document.createElement('div')
+jsDiv.id = 'jssection'
+jsDiv.classList.add('hide')
+document.body.appendChild(jsDiv)
+
+const checkbox = document.getElementById('tableselector')
+
+const htmlDiv = document.getElementById('htmlsection')
+
+if(checkbox.checked){
+    htmlDiv.classList.add('hide')
+    jsDiv.classList.remove('hide')
+}
+else{
+    htmlDiv.classList.remove('hide')
+    jsDiv.classList.add('hide')
+}
+
+checkbox.addEventListener('change', function(){
+    if(checkbox.checked){
+        htmlDiv.classList.add('hide')
+        jsDiv.classList.remove('hide')
     }
+    else{
+        htmlDiv.classList.remove('hide')
+        jsDiv.classList.add('hide')
+    }
+
+})
     
 
-}
 
