@@ -106,6 +106,8 @@ checkbox.addEventListener('change', function(){
     }
 
 })
+
+jsDiv.appendChild(table)
     
 
 
