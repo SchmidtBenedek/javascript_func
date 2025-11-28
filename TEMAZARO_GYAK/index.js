@@ -27,56 +27,91 @@ const arr = [
 //Fejlec megcsinalasahoz kulon tomb a fejlec adataival
 const fejlec = ['Ókori település', 'Ágazat', 'Példa']
 
-//Basic cunyok tablazathoz
-const table = document.createElement('table')
-const tHead = document.createElement('thead')
-const trHead = document.createElement('tr')
-const tBody = document.createElement('tbody')
+/**
+ * 
+ * @param {HTMLElement} parent 
+ * @param {string} text 
+ * @param {'td' | 'tr'} celltype 
+ */
+function createCell(parent, text, celltype){
+    const cell = document.createElement(celltype)
+    parent.appendChild(cell)
+    cell.innerText = text
 
-//document.body.appendChild(table)
-table.appendChild(tHead)
-tHead.appendChild(trHead)
-table.appendChild(tBody)
-
-//Fejlec megcsinalasa
-for(const x of fejlec){
-    const th = document.createElement('th')
-    trHead.appendChild(th)
-    th.innerText = x
+    return cell
 }
 
-//Tablazat tobbi reszenek megcsinalasa
-for(const x of arr){
+/**
+ * 
+ * @param {HTMLElement} tHead 
+ * @param {string[]} fejlec 
+ */
+function createHeader(tHead, fejlec){
+    const tr = document.createElement('tr')
+    tHead.appendChild(tr)
+
+    for (const x of fejlec){
+        createCell(tr, x, 'th')
+    }
+}
+
+/**
+ * 
+ * @param {HTMLTableElement} tBody 
+ * @param {string} data 
+ */
+function createRows(tBody, data){
     const tr1 = document.createElement('tr')
     tBody.appendChild(tr1)
 
-    const td1 = document.createElement('td')
-    tr1.appendChild(td1)
-    td1.innerText = x.telepules
+    //Elso 3 adat 1 sorban
+    const td1 = createCell(tr1, data.telepules, 'td')
+    createCell(tr1, data.agazat1, 'td')
+    createCell(tr1, data.pelda1, 'td')
 
-    const td2 = document.createElement('td')
-    tr1.appendChild(td2)
-    td2.innerText = x.agazat1
+    //Agazatos
+    if(data.agazat2 !== undefined && data.pelda2 !== undefined){
+        td1.rowSpan = '2'
 
-    const td3 = document.createElement('td')
-    tr1.appendChild(td3)
-    td3.innerText = x.pelda1
-
-    if(x.agazat2 != undefined && x.pelda2 != undefined){
-        td1.rowSpan = "2"
         const tr2 = document.createElement('tr')
         tBody.appendChild(tr2)
 
-        const td4 = document.createElement('td')
-        tr2.appendChild(td4)
-        td4.innerText = x.agazat2
+        createCell(tr2, data.agazat2, 'td')
+        createCell(tr2, data.pelda2, 'td')
+    }
 
-        const td5 = document.createElement('td')
-        tr2.appendChild(td5)
-        td5.innerText = x.pelda2
-    }  
 }
 
+/**
+ * 
+ * @param {string[]} arr 
+ * @param {string[]} fejlec 
+ * @returns {HTMLTableElement}
+ */
+function renderTable(arr, fejlec){
+    //Basic cunyok tablazathoz
+    const table = document.createElement('table')
+    const tHead = document.createElement('thead')
+    const tBody = document.createElement('tbody')
+
+    table.appendChild(tHead)
+    table.appendChild(tBody)
+
+    createHeader(tHead, fejlec)
+
+    for(const x of arr){
+        createRows(tBody, x)
+    }
+
+    return table
+}
+
+const jsTable = document.body.appendChild(renderTable(arr, fejlec))
+
+
+
+
+//CHECKBOX 
 const jsDiv = document.createElement('div')
 jsDiv.id = 'jssection'
 jsDiv.classList.add('hide')
@@ -86,16 +121,12 @@ const checkbox = document.getElementById('tableselector')
 
 const htmlDiv = document.getElementById('htmlsection')
 
-if(checkbox.checked){
-    htmlDiv.classList.add('hide')
-    jsDiv.classList.remove('hide')
-}
-else{
-    htmlDiv.classList.remove('hide')
-    jsDiv.classList.add('hide')
-}
-
-checkbox.addEventListener('change', function(){
+/**
+ * 
+ * @param {HTMLElement} checkbox 
+ * @returns {void}
+ */
+function checkBoxUpdate(checkbox){
     if(checkbox.checked){
         htmlDiv.classList.add('hide')
         jsDiv.classList.remove('hide')
@@ -104,10 +135,15 @@ checkbox.addEventListener('change', function(){
         htmlDiv.classList.remove('hide')
         jsDiv.classList.add('hide')
     }
+}
+checkBoxUpdate(checkbox)
+
+checkbox.addEventListener('change', function(){
+    checkBoxUpdate(checkbox)
 
 })
 
-jsDiv.appendChild(table)
+jsDiv.appendChild(jsTable)
     
 
 
