@@ -45,6 +45,7 @@ function createCell(parent, text, celltype){
  * 
  * @param {HTMLElement} tHead 
  * @param {string[]} fejlec 
+ * @returns {void}
  */
 function createHeader(tHead, fejlec){
     const tr = document.createElement('tr')
@@ -145,5 +146,85 @@ checkbox.addEventListener('change', function(){
 
 jsDiv.appendChild(jsTable)
     
+function addToHtmlTable(e){
+    e.preventDefault()
+
+    const target = e.target
+
+    const telepules = target.querySelector('#elso')
+    const agazat1 = target.querySelector('#masodik')
+    const pelda1 = target.querySelector('#harmadik')
+    const agazat2 = target.querySelector('#negyedik')
+    const pelda2 = target.querySelector('#otodik')
+
+    const obj = {
+        telepules: telepules.value,
+        agazat1: agazat1.value,
+        pelda1: pelda1.value,
+        agazat2: agazat2.value,
+        pelda2: pelda2.value
+    }
+    const tbody = document.getElementById('htmltablebody')
+    renderTableRow(tbody, obj)
+}
+
+function createFormElement(form, id, labeltext){
+    const div = document.createElement('div')
+    form.appendChild(div)
+
+    const label = document.createElement('label')
+    label.htmlFor = id
+    label.innerText = labeltext
+    div.appendChild(label)
+
+    const input = document.createElement('input')
+    input.type = 'text'
+    input.id = id
+    input.name = id
+    div.appendChild(input)
+
+    const span = document.createElement('span');
+    span.classList.add('error')
+    div.appendChild(span)
+
+}
+
+function renderTableRow(tablebody, telepulesRow){
+    const tr1 = document.createElement('tr')
+    tablebody.appendChild(tr1)
+    const td1 = createCell('td', telepulesRow.telepules, tr1)
+
+    td1.addEventListener('click',
+        function(e){
+            const target = e.target
+            const tr = target.parentElement
+            const tbody = tr.parentElement
+            const kijelol = tbody.querySelector('.marked')
+
+            if(kijelol){
+                kijelol.classList.remove('marked')
+            }
+            target.classList.add('marked')
+        }
+    )
+
+    createCell('td', telepulesRow.agazat1, tr1)
+    createCell('td', telepulesRow.pelda1, tr1)
+
+    if(telepulesRow.agazat2 !== undefined && telepulesRow.pelda2 !== undefined){
+        td1.rowSpan = 2
+
+        const tr2 = document.createElement('tr')
+        tablebody.appendChild(tr2)
+
+        createCell('td', telepulesRow.agazat2, tr2)
+        createCell('td', telepulesRow.pelda2, tr2)
+    }
+}
+
+const htmlForm = document.getElementById('htmlform')
+
+htmlForm.addEventListener('submit', addToHtmlTable)
+
 
 
