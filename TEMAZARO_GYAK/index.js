@@ -24,6 +24,29 @@ const arr = [
     }
 ]
 
+const formArray=[
+    {
+        label: "Település:",
+        input: "telepules",
+    },
+    {
+        label: "Ágazat1:",
+        input: "agazat1",
+    },
+    {
+        label: "Példa1:",
+        input: "pelda1",
+    },
+    {
+        label: "Ágazat2:",
+        input: "agazat2",
+    },
+    {
+        label: "Példa2",
+        input: "pelda2",
+    },
+]
+
 //Fejlec megcsinalasahoz kulon tomb a fejlec adataival
 const fejlec = ['Ókori település', 'Ágazat', 'Példa']
 
@@ -83,6 +106,10 @@ function createRows(tBody, data){
 
 }
 
+function brOwn(){
+    const br = document.createElement('br')
+}
+
 /**
  * 
  * @param {string[]} arr 
@@ -107,7 +134,8 @@ function renderTable(arr, fejlec){
     return table
 }
 
-const jsTable = document.body.appendChild(renderTable(arr, fejlec))
+const jsTable = renderTable(arr, fejlec)
+
 
 
 
@@ -192,7 +220,7 @@ function createFormElement(form, id, labeltext){
 function renderTableRow(tablebody, telepulesRow){
     const tr1 = document.createElement('tr')
     tablebody.appendChild(tr1)
-    const td1 = createCell('td', telepulesRow.telepules, tr1)
+    const td1 = createCell(tr1, telepulesRow.telepules, 'td')
 
     td1.addEventListener('click',
         function(e){
@@ -208,23 +236,44 @@ function renderTableRow(tablebody, telepulesRow){
         }
     )
 
-    createCell('td', telepulesRow.agazat1, tr1)
-    createCell('td', telepulesRow.pelda1, tr1)
+    createCell(tr1, telepulesRow.agazat1, 'td')
+    createCell(tr1, telepulesRow.pelda1, 'td')
 
     if(telepulesRow.agazat2 !== undefined && telepulesRow.pelda2 !== undefined){
         td1.rowSpan = 2
+        
 
         const tr2 = document.createElement('tr')
         tablebody.appendChild(tr2)
 
-        createCell('td', telepulesRow.agazat2, tr2)
-        createCell('td', telepulesRow.pelda2, tr2)
+        createCell(tr2, telepulesRow.agazat2, 'td')
+        createCell(tr2, telepulesRow.pelda2, 'td')
     }
 }
 
 const htmlForm = document.getElementById('htmlform')
 
 htmlForm.addEventListener('submit', addToHtmlTable)
+
+
+function jsFormCreate(id, mezok){
+    const jsForm = document.createElement('form')
+    jsForm.id = id
+    jsDiv.appendChild(jsForm)
+
+    for(const x of mezok){
+        createFormElement(jsForm, x.input, x.label)
+        
+    }
+
+    const button = document.createElement('button')
+    jsForm.appendChild(button)
+
+    return jsForm
+}
+
+jsDiv.appendChild(jsTable)    
+jsFormCreate('jsform', formArray)
 
 
 
