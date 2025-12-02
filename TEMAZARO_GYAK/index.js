@@ -190,6 +190,7 @@ function addToHtmlTable(e){
     }
     const tbody = document.getElementById('htmltablebody')
     renderTableRow(tbody, obj)
+    target.reset()
 }
 
 function createFormElement(form, id, labeltext){
@@ -291,6 +292,7 @@ function addToJsTable(e){
     const agazat2 = target.querySelector('#agazat2').value
     const pelda2 = target.querySelector('#pelda2').value
 
+    
     const obj = {
         telepules: telepules,
         agazat1: agazat1,
@@ -300,6 +302,14 @@ function addToJsTable(e){
     }
 
     arr.push(obj)
+    
+    const tbody = document.getElementById('jstable')
+    tbody.innerHTML = ''
+    for(x of arr){
+        createRows(tbody, x)
+
+    }
+    
 }
 
 
