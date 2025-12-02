@@ -71,7 +71,7 @@ function renderTableRow(tablebody, writerRow){
 
         createTableCell('td', writerRow.writer1, tr1)
         createTableCell('td', writerRow.work1, tr1)
-
+ 
         if(writerRow.writer2  && writerRow.work2 ){
             td1.rowSpan = '2'
             const tr2 = document.createElement('tr')

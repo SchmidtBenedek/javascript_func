@@ -106,10 +106,6 @@ function createRows(tBody, data){
 
 }
 
-function brOwn(){
-    const br = document.createElement('br')
-}
-
 /**
  * 
  * @param {string[]} arr 
@@ -135,7 +131,7 @@ function renderTable(arr, fejlec){
 }
 
 const jsTable = renderTable(arr, fejlec)
-
+jsTable.id = 'jstable'
 
 
 
@@ -205,6 +201,8 @@ function createFormElement(form, id, labeltext){
     label.innerText = labeltext
     div.appendChild(label)
 
+    Br(div)
+
     const input = document.createElement('input')
     input.type = 'text'
     input.id = id
@@ -260,20 +258,51 @@ function jsFormCreate(id, mezok){
     const jsForm = document.createElement('form')
     jsForm.id = id
     jsDiv.appendChild(jsForm)
-
+    
     for(const x of mezok){
         createFormElement(jsForm, x.input, x.label)
-        
     }
 
     const button = document.createElement('button')
+    button.innerText = 'Hozzáadás'
     jsForm.appendChild(button)
 
     return jsForm
+}
+
+function Br(parent){
+    const br = document.createElement('br')
+    parent.appendChild(br)
 }
 
 jsDiv.appendChild(jsTable)    
 jsFormCreate('jsform', formArray)
 
 
+
+function addToJsTable(e){
+    e.preventDefault()
+
+    const target = e.target
+
+    const telepules = target.querySelector('#telepules').value
+    const agazat1 = target.querySelector('#agazat1').value
+    const pelda1 = target.querySelector('#pelda1').value
+    const agazat2 = target.querySelector('#agazat2').value
+    const pelda2 = target.querySelector('#pelda2').value
+
+    const obj = {
+        telepules: telepules,
+        agazat1: agazat1,
+        pelda1: pelda1,
+        agazat2: agazat2 ===  "" ? undefined : agazat2, 
+        pelda2: pelda2 === "" ? undefined : pelda2
+    }
+
+    arr.push(obj)
+}
+
+
+const jsForm = document.getElementById('jsform')
+jsForm.addEventListener('submit', addToJsTable)
 
